@@ -1,0 +1,243 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Core"><title>1小时构建稳定交易体系 · 明镜止水的Blog</title><meta name="description" content="了解市场运行状态
+分析框架：从宏观到微观
+
+资本市场宏观方向标的
+
+Equity: DXY, S&amp;amp;P500, NDAQ, DJIA, DAX, VIX, CSI500, CSI300…
+Bond: US10Y, US02Y, CN10Y, CN02Y…
+Forex: AUDJPY, USDR"><meta name="keywords" content="极限博客,极限Blog,博客,极限"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 5.4.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">明镜止水的Blog</a></h3><div class="description"><p>心之所愿，无事不成。<br> Nothing is impossible to a willing heart.</p></div></div></div><ul class="social-links"><li><a target="_blank" rel="noopener" href="https://github.com/mrcore"><i class="fa fa-github"></i></a></li><li><a href="mailto:x@jixian.io"><i class="fa fa-envelope"></i></a></li><li><a target="_blank" rel="noopener" href="http://sighttp.qq.com/authd?IDKEY="><i class="fa fa-qq"></i></a></li><li><a target="_blank" rel="noopener" href="https://zhihu.com/people/"><i class="fa fa-mortar-board"></i></a></li></ul><div class="footer"><div class="p"> <span>© 2017 - 2020 </span><i class="fa fa-star"></i><span> Core</span></div><div class="by_farbox"><span>Powered by </span><a href="https://hexo.io/zh-cn/" target="_blank">Hexo </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core  </a></div><div class="beian"><a href="http://www.beian.miit.gov.cn/" target="_blank">粤ICP备15011643号</a><span style="height:10px;margin-left: 10px;">|</span><img src="/images/gongan.png" style="height:10px;margin-left: 10px;position: relative;top: 1px;"><span style="margin-left: 2px;">粤公网安备 44030402003967号</span></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/archives">归档</a></li><li><a href="/tags">标签</a></li><li><a href="/about">关于</a></li><li><a href="/guestbook">留言</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>1小时构建稳定交易体系</a></h3></div><div class="post-content"><h2 id="了解市场运行状态"><a href="#了解市场运行状态" class="headerlink" title="了解市场运行状态"></a>了解市场运行状态</h2><ul>
+<li><p>分析框架：从宏观到微观</p>
+<ul>
+<li><p>资本市场宏观方向标的</p>
+<ul>
+<li>Equity: DXY, S&amp;P500, NDAQ, DJIA, DAX, VIX, CSI500, CSI300…</li>
+<li>Bond: US10Y, US02Y, CN10Y, CN02Y…</li>
+<li>Forex: AUDJPY, USDRUB, USDTRY, USDCNY…</li>
+<li>Commodity: GC, HC, CL, SC, CU…</li>
+</ul>
+</li>
+<li><p>类别板块：</p>
+<ul>
+<li>金融、黑色、能化、有色、农产品</li>
+</ul>
+</li>
+<li><p>高相关品种：C&amp;CS, A&amp;M, Y&amp;P…</p>
+</li>
+</ul>
+</li>
+<li><p>构建市场监控面板：示例</p>
+<p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/monitor.png"></p>
+<p>  <img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/monitor1.png"></p>
+<ul>
+<li><p>技术分析</p>
+<ul>
+<li>趋势/反转：<ul>
+<li>意义：根据目前趋势强度考虑交易战略：趋势交易or反转交易or不交易</li>
+<li>中长期趋势（1年、6个月、3个月…）、短期趋势（1个月、2周、1周…）、超短期趋势（1小时、30分钟、15分钟…）</li>
+<li>根据自己的目标持仓周期，选择合适的趋势时间频级</li>
+</ul>
+</li>
+<li>可以使用K线、走势线、移动平均线、其他量化指标确定趋势</li>
+<li>波动：历史/当前波动水平</li>
+<li>意义：未来趋势判断；期权交易机会；仓位设置与风险管理</li>
+<li>其他：价格水平、持仓量、成交量、升贴水、回撤百分比等</li>
+</ul>
+</li>
+<li><p>基本面分析</p>
+<ul>
+<li>宏观面：GDP Growth、CPI、PPI、Jobless Claims…</li>
+<li>基本面：供应与需求、生产与消费量、进出口量</li>
+<li>消息面：FOMC、NonFarm、特殊事件（eg. 苏伊士运河堵塞）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="构建交易体系"><a href="#构建交易体系" class="headerlink" title="构建交易体系"></a>构建交易体系</h2><h3 id="交易模式"><a href="#交易模式" class="headerlink" title="交易模式"></a>交易模式</h3><ul>
+<li>模式分类<ul>
+<li>投资与投机<ul>
+<li>投资：交易的是价值</li>
+<li>投机：交易的是波动</li>
+</ul>
+</li>
+<li>交易频率<ul>
+<li>高频交易：胜率优先，技术与设备要求极高</li>
+<li>日内交易：灵活度高，潜在收获/风险较小</li>
+<li>日间交易：周期较长，潜在收获/风险较大</li>
+</ul>
+</li>
+<li>单品种与多品种<ul>
+<li>单品种：<ul>
+<li>交易所需时间精力较少，可以深入了解标的属性</li>
+<li>交易机会较少，风险分散困难</li>
+</ul>
+</li>
+<li>多品种<ul>
+<li>交易的时间精力花费大，难以对各标的有深入的了解</li>
+<li>交易机会较丰富，比较容易分散化风险</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>主观交易与量化交易<ul>
+<li>主观交易：<ul>
+<li>高灵活度，能够随时调整交易策略</li>
+<li>主观性强，高度依赖交易经验与交易技术</li>
+</ul>
+</li>
+<li>量化交易<ul>
+<li>纪律性强，不受交易员情绪影响</li>
+<li>依赖交易系统的有效性，对编程能力要求较高</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>交易模式的选择<ul>
+<li>交易目标：目标盈亏比、目标收益率</li>
+<li>资金规模与风险偏好：能交易什么品种、风险预算、建仓手数、持仓周期、止盈止损设定</li>
+<li>市场熟悉度：尽量选择自己熟悉的市场与品种</li>
+<li>技术水平：基本面/技术分析能力、编程能力</li>
+<li>时间与精力：选择匹配时间精力的交易频率</li>
+</ul>
+</li>
+</ul>
+<h3 id="交易策略"><a href="#交易策略" class="headerlink" title="交易策略"></a>交易策略</h3><ul>
+<li><p>趋势策略：</p>
+<ul>
+<li>指标信号：均线突破、回撤百分比、K线形态…</li>
+</ul>
+</li>
+<li><p>反转策略：</p>
+<ul>
+<li>指标信号：支撑线/阻力线、RSI…</li>
+</ul>
+</li>
+<li><p>选择适合的交易策略</p>
+<ul>
+<li>考虑市场状态<ul>
+<li>趋势：对于刚走出趋势的标的，趋势策略的获利空间可能更大</li>
+<li>乖离率：对于趋势很强，但乖离过大的标的，价格反转的可能性增大</li>
+<li>波动率：原本较长时间处于低波动状态的品种，若出现均线突破、伴随波动升高的状况，可能要开始走出趋势</li>
+<li>价格区间：综合考虑历史最高价格、回撤百分比、阻力线、支撑线、缺口等因素</li>
+<li>成交量：放量大涨/大跌印证了趋势的强度</li>
+<li>持仓量：持仓拥挤的市场发生市场踩踏（反转）的可能性更大<br><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/20210425150504.PNG"></li>
+</ul>
+</li>
+<li>考虑风险承受能力、交易技术等因素</li>
+</ul>
+</li>
+</ul>
+<h3 id="仓位管理"><a href="#仓位管理" class="headerlink" title="仓位管理"></a>仓位管理</h3><ul>
+<li><p>交易周期</p>
+<ul>
+<li>交易周期的权衡<ul>
+<li>短线交易：盈亏比较高，但潜在收益/亏损较低</li>
+<li>中长线交易：盈亏比较低，但潜在收益/亏损较高</li>
+</ul>
+</li>
+<li>选择合适的交易周期<ul>
+<li>考虑时间成本、风险偏好</li>
+<li>统计过往交易中不同持仓周期对应的胜率，考虑胜率 X 收益较高的持仓周期</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>仓位大小</p>
+<ul>
+<li><p>控制亏损幅度：设定单品种/投资组合的亏损百分比。例如，设定每个品种的风险敞口不超过资本金的2%、投资组合的风险敞口不超过资本金的5%。</p>
+</li>
+<li><p>考虑标的价格、波动与杠杆：计算标的风险敞口。以期货为例，如果进行日频级的交易，可以用“价格 X 日波动率 X 合约乘数”来计算标的单日风险敞口。</p>
+</li>
+<li><p>计算目标持仓量：例如，若资本金为20万，单品种的风险敞口为2%，则一个品种的最高风险敞口额度为4000。若交易标的为鸡蛋，则目标持仓量为4000 / 2000 = 2.</p>
+<p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/riskval.png"></p>
+</li>
+</ul>
+</li>
+<li><p>建仓/平仓节奏</p>
+<ul>
+<li><p>一次性建仓/平仓</p>
+<ul>
+<li>优点：更大的盈利空间</li>
+<li>缺点：更大的价格风险</li>
+</ul>
+</li>
+<li><p>逐步建仓/平仓</p>
+<ul>
+<li>优点：减少价格风险，同时提高潜在收益</li>
+<li>缺点：较小的盈利空间</li>
+</ul>
+</li>
+<li><p>考虑因素</p>
+<ul>
+<li><p>资金量大小</p>
+</li>
+<li><p>风险承受能力/风险偏好</p>
+</li>
+<li><p>信心水平</p>
+<p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/tempo.png"></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>止盈止损</p>
+<ul>
+<li>意义：交易风险控制。交易的首要目标是避免亏损，其次是保存收益；止盈止损需要在建仓之前想好。</li>
+<li>如何设定止盈/止损位<ul>
+<li>波动：止盈/止损位的设定需要考虑标的波动率，给价格变动留下足够空间</li>
+<li>趋势强度：若当前价格强势上涨/下跌，可以将止盈/止损放得宽些；若当前价格弱势震荡，可以将止盈/止损放得窄些</li>
+<li>乖离：若当前价格乖离过高，可以考虑平仓止盈</li>
+<li>价格形态：若价格存在明显的阻力/支撑线，可以考虑在阻力线附近止盈/止损</li>
+<li>持仓周期：若目标持仓周期较短，止盈/止损需要放窄一些</li>
+<li>风险偏好：若追求绝对收益，可以把止盈/止损放得更宽</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="交易记录"><a href="#交易记录" class="headerlink" title="交易记录"></a>交易记录</h3><ul>
+<li><p>目的：制定交易计划、管理敞口风险，提高交易水平</p>
+</li>
+<li><p>记录要素：</p>
+<ul>
+<li>交易计划：交易标的、目标手数、目标成交价、目标止盈价、目标止损价、目标持仓周期等</li>
+<li>风险管理：标的波动率、ES、风险价值等</li>
+<li>交易回顾：总结交易的成功/失败之处，完善交易体系</li>
+</ul>
+</li>
+<li><p>记录格式</p>
+<ul>
+<li>文本工具</li>
+<li>优点：灵活度高<ul>
+<li>缺点：索引不方便</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Excel表格</p>
+<ul>
+<li>优点：索引方便<ul>
+<li>缺点：拓展性有限</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/tradinglog_text.png" style="zoom:50%;" />
+
+<p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/tradinglog.png"></p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2021-02-25</span><i class="fa fa-tag"></i><span class="leancloud_visitors"></span></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://Mjzs12138.github.io/2021/02/25/1小时构建稳定交易体系/,明镜止水的Blog,1小时构建稳定交易体系,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a class="btn" role="navigation" href="/2021/02/08/2021%E5%B9%B4%E5%B8%82%E5%9C%BA%E5%B1%95%E6%9C%9B%EF%BC%9A%E5%93%81%E7%A7%8D%E4%BA%A4%E6%98%93%E5%B1%9E%E6%80%A7-%E8%B6%8B%E5%8A%BF%20or%20%E5%9B%9E%E5%BD%92%EF%BC%9F/" title="2021年市场展望：品种交易属性-趋势 or 回归?">下一篇</a></li></ul></div><script src="/js/visitors.js"></script><a id="comments"></a><div id="vcomments" style="margin:0 30px;"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//cdn.jsdelivr.net/gh/xcss/valine@latest/dist/Valine.min.js"></script><script>var valine = new Valine({
+  el:'#vcomments',
+  notify:false || false, 
+  verify:false|| false, 
+  app_id:'',
+  app_key:'',
+  placeholder:'念念不忘，必有回响...',
+  path: window.location.pathname,
+  serverURLs: '',
+  visitor:true,
+  recordIP:true,
+  avatar:'mp'
+})</script></div></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>
