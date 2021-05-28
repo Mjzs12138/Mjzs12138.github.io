@@ -1,0 +1,80 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Core"><title>一个基于线性回归的趋势策略 · 明镜止水的Blog</title><meta name="description" content="策略逻辑一般认为，金融工具的市场价格在趋势与反转两种状态间转换。在趋势行情中，“买涨杀跌”的策略便十分奏效。如何定义趋势？若通过一元线性回归模型对资产价格进行建模，且资产价格呈现一条斜率较大、稳定向上/向下（i.e. 回归残差小）的直线，则可以认为该资产价格存在较强的趋势。因此，本文通过“斜率 $\"><meta name="keywords" content="极限博客,极限Blog,博客,极限"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 5.4.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">明镜止水的Blog</a></h3><div class="description"><p>心之所愿，无事不成。<br> Nothing is impossible to a willing heart.</p></div></div></div><ul class="social-links"><li><a target="_blank" rel="noopener" href="https://github.com/mrcore"><i class="fa fa-github"></i></a></li><li><a href="mailto:x@jixian.io"><i class="fa fa-envelope"></i></a></li><li><a target="_blank" rel="noopener" href="http://sighttp.qq.com/authd?IDKEY="><i class="fa fa-qq"></i></a></li><li><a target="_blank" rel="noopener" href="https://zhihu.com/people/"><i class="fa fa-mortar-board"></i></a></li></ul><div class="footer"><div class="p"> <span>© 2017 - 2020 </span><i class="fa fa-star"></i><span> Core</span></div><div class="by_farbox"><span>Powered by </span><a href="https://hexo.io/zh-cn/" target="_blank">Hexo </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core  </a></div><div class="beian"><a href="http://www.beian.miit.gov.cn/" target="_blank">粤ICP备15011643号</a><span style="height:10px;margin-left: 10px;">|</span><img src="/images/gongan.png" style="height:10px;margin-left: 10px;position: relative;top: 1px;"><span style="margin-left: 2px;">粤公网安备 44030402003967号</span></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/archives">归档</a></li><li><a href="/tags">标签</a></li><li><a href="/about">关于</a></li><li><a href="/guestbook">留言</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>一个基于线性回归的趋势策略</a></h3></div><div class="post-content"><h2 id="策略逻辑"><a href="#策略逻辑" class="headerlink" title="策略逻辑"></a>策略逻辑</h2><p>一般认为，金融工具的市场价格在趋势与反转两种状态间转换。在趋势行情中，“买涨杀跌”的策略便十分奏效。如何定义趋势？若通过一元线性回归模型对资产价格进行建模，且资产价格呈现一条斜率较大、稳定向上/向下（i.e. 回归残差小）的直线，则可以认为该资产价格存在较强的趋势。因此，本文通过“斜率 $\times$ 决定系数“来构造趋势指标，并以该指标较高/较低百分位对应的值作为进出仓的阈值。然而，相较过去过大的涨幅/跌幅可能意味着该趋势不可持续，“物极必反”便可能带来回调或震荡，在进出仓时还需考虑该资产的历史回调（下文称“Drawdown”）或反弹幅度（下文称“Drawup”）。因此，本文还将金融资产收益率历史回调的较低百分位、反弹的较高百分位对应的值作为进出仓的另一个阈值。通过结合上述两种进出仓的阈值，本文提出了一个基于线性回归的趋势策略。</p>
+<h2 id="定义和解释"><a href="#定义和解释" class="headerlink" title="定义和解释"></a>定义和解释</h2><ul>
+<li><p>n_roll: 滚动窗口</p>
+</li>
+<li><p>n_rank: 排序窗口</p>
+</li>
+<li><p>dr = 过去n_roll个时点的价格序列的回归曲线的决定系数 $\times$ 过去n_roll个时点的价格序列的回归曲线的斜率</p>
+</li>
+<li><p>dd = 当前时刻累积收益率 / 过去n_roll个时点中的最大累积收益率 - 1</p>
+</li>
+<li><p>du = 当前时刻累积收益率 / 过去n_roll个时点中的最小累积收益率 - 1</p>
+</li>
+<li><p>a: 当前dr在过去n_rank个时点上的排序 / n_rank</p>
+</li>
+<li><p>b: 当前dd在过去n_rank个时点上的排序 / n_rank</p>
+</li>
+<li><p>c:  当前du在过去n_rank个时点上的排序 / n_rank</p>
+</li>
+<li><p>a_long: 多头建仓阈值（a在过去n_rank个时点上某个百分位上对应的a值）</p>
+</li>
+<li><p>a_short: 空头建仓阈值（a在过去n_rank个时点上某个百分位上对应的a值）</p>
+</li>
+<li><p>b_short: 空头建仓阈值（b在过去n_rank个时点上某个百分位上对应的b值）</p>
+</li>
+<li><p>c_long: 多头建仓阈值（c在过去n_rank个时点上某个百分位上对应的c值）</p>
+</li>
+<li><p>loss_budget: 单日最大损失占nav的比例（预设为0.02）</p>
+</li>
+<li><p>risk_value: 品种的风险价值（risk_value = vol $\times$ multiplier $\times$ P）</p>
+</li>
+<li><p>N: 单品种的持仓手数（N = nav $\times$ loss_budget / (n $\times$ risk_value)，其中n为回测资产数量）</p>
+</li>
+</ul>
+<h2 id="数据来源与处理"><a href="#数据来源与处理" class="headerlink" title="数据来源与处理"></a>数据来源与处理</h2><p>本文选取了AL、CF、EG、J、SC五个期货品种的主力合约作为回测的资产对象。原始价格数据来源为天勤量化，回测时间为2020年6月8日至2021年5月26日，时间频级为15分钟。回测运行环境为Python 3.8.5。需要注意的是，由于在分钟频级上对期货展期进行价格调整存在诸多不便，本文并为对资产价格进行调整。不过，由于在回测部分设置了收盘前15分钟全部平仓的规则，该问题不会对分析结果产生重大影响。</p>
+<h2 id="策略回测"><a href="#策略回测" class="headerlink" title="策略回测"></a>策略回测</h2><h3 id="回测设计"><a href="#回测设计" class="headerlink" title="回测设计"></a>回测设计</h3><ul>
+<li>首先，计算资产的自然对数价格。许多期货工具的资产价格呈现“猛涨深跌”的价格趋势，利用一元线性回归拟合的价格直线更加适合对数价格。</li>
+<li>然后，以n_roll为滚动窗口，对资产对数价格序列进行一元线性拟合，得到拟合直线的斜率与决定系数。将斜率与决定系数相乘，得到dr指标。同时计算dr在过去n_rank个时点上的排序百分比a。</li>
+<li>接着，以n_roll为滚动窗口，计算资产收益率的Drawup与Drawdown，即du和dd指标。同时计算dd和du在过去n_rank个时点上的排序百分比b与c。</li>
+<li>建仓规则<ul>
+<li>目前无持仓，a &gt; a_long 且 c &lt; c_long时，开多仓N手</li>
+<li>目前无持仓，a &lt; a_short且 b &gt; b_short时，开空仓N手</li>
+</ul>
+</li>
+<li>平仓规则<ul>
+<li>目前有多仓，不满足“a &gt; a_long 且 c &lt; c_long”，平掉所有仓位</li>
+<li>目前有空仓，不满足“a &lt; a_short 且 b &gt; b_short”，平掉所有仓位</li>
+<li>每个交易日的14: 45: 00和22: 45: 00平掉所有仓位</li>
+</ul>
+</li>
+</ul>
+<h2 id="回测结果与分析"><a href="#回测结果与分析" class="headerlink" title="回测结果与分析"></a>回测结果与分析</h2><p>五个品种单独的回测结果如下图所示。若以sharpe_best为绩效评估指标，在五个品种中，表现最好的为CF，该品种的最优参数取得了3以上的年化夏普比率。其次是SC和AL，这两个品种的最优参数也取得了2以上的年化夏普比率。若以sharpe_worst为评价指标，五个品种的优劣排序分别为CF、J、SC、EG和AL。其中CF在最劣参数下仍然取得了年化-0.01的成绩，说明该品种的交易属性与本文提出的策略比较契合。</p>
+<table><tr>
+<td><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/20210528091138.png"></td>
+<td><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/20210528091703.png"></td>
+</tr></table>
+
+<table><tr>
+<td><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/20210528091738.png"></td>
+<td><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/20210528091800.png"></td>
+</tr></table>
+
+<div align="center"><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/20210528091810.png" height="50%" width="50%"></div>
+
+<p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/20210528091041.png"></p>
+<p>将五个品种构建成投资组合后，该投资组合的历史回报及历史回撤如下图所示。投资组合能够有效分散化资产的市场价格风险，提高收益效率。该投资组合在近1年的回测期间取得了20%的收益，最大回撤仅-1.2%，说明该投资组合具有较高的风险收益比。</p>
+<p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/20210528091819.png"></p>
+<p>回测结果表面，本文提出的策略具有较高的风险收益比，能够有效提高投资收益。当然，在实际交易中，还需将交易手续费、滑点等因素纳入考虑，实际收益可能稍逊一筹。该策略未来的改进方向包括：1. 制定滑动窗口、排序窗口的调整规则； 2. 进出仓阈值随市场行情的自动化调整。</p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2021-05-28</span><i class="fa fa-tag"></i><span class="leancloud_visitors"></span></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://Mjzs12138.github.io/2021/05/28/一个基于线性回归的趋势策略/,明镜止水的Blog,一个基于线性回归的趋势策略,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a class="btn" role="navigation" href="/2021/05/27/%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8E%E8%B7%A8%E5%93%81%E7%A7%8D%E4%BB%B7%E5%B7%AE%E5%BC%B1%E8%B6%8B%E5%8A%BF%E6%80%A7%E7%9A%84%E7%AD%96%E7%95%A5/" title="一个基于跨品种价差弱趋势性的策略">下一篇</a></li></ul></div><script src="/js/visitors.js"></script><a id="comments"></a><div id="vcomments" style="margin:0 30px;"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//cdn.jsdelivr.net/gh/xcss/valine@latest/dist/Valine.min.js"></script><script>var valine = new Valine({
+  el:'#vcomments',
+  notify:false || false, 
+  verify:false|| false, 
+  app_id:'',
+  app_key:'',
+  placeholder:'念念不忘，必有回响...',
+  path: window.location.pathname,
+  serverURLs: '',
+  visitor:true,
+  recordIP:true,
+  avatar:'mp'
+})</script></div></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>

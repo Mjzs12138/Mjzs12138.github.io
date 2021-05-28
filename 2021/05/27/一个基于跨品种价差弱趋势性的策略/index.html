@@ -1,0 +1,93 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Core"><title>一个基于跨品种价差弱趋势性的策略 · 明镜止水的Blog</title><meta name="description" content="策略逻辑部分大宗商品期货之间具有较强的相关性，其价差趋势性较单品种价格弱，更适合均值回归型策略。基于跨品种价差的日波动范围，通过“低买高卖”的简单策略来提高套利策略的胜率。该策略的核心不在于价差序列的平稳性，也不在于价差变动方向的预测，而在于价差仓位的管理节奏。
+定义 &amp;amp; 解释
+spd_la"><meta name="keywords" content="极限博客,极限Blog,博客,极限"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 5.4.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">明镜止水的Blog</a></h3><div class="description"><p>心之所愿，无事不成。<br> Nothing is impossible to a willing heart.</p></div></div></div><ul class="social-links"><li><a target="_blank" rel="noopener" href="https://github.com/mrcore"><i class="fa fa-github"></i></a></li><li><a href="mailto:x@jixian.io"><i class="fa fa-envelope"></i></a></li><li><a target="_blank" rel="noopener" href="http://sighttp.qq.com/authd?IDKEY="><i class="fa fa-qq"></i></a></li><li><a target="_blank" rel="noopener" href="https://zhihu.com/people/"><i class="fa fa-mortar-board"></i></a></li></ul><div class="footer"><div class="p"> <span>© 2017 - 2020 </span><i class="fa fa-star"></i><span> Core</span></div><div class="by_farbox"><span>Powered by </span><a href="https://hexo.io/zh-cn/" target="_blank">Hexo </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core  </a></div><div class="beian"><a href="http://www.beian.miit.gov.cn/" target="_blank">粤ICP备15011643号</a><span style="height:10px;margin-left: 10px;">|</span><img src="/images/gongan.png" style="height:10px;margin-left: 10px;position: relative;top: 1px;"><span style="margin-left: 2px;">粤公网安备 44030402003967号</span></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/archives">归档</a></li><li><a href="/tags">标签</a></li><li><a href="/about">关于</a></li><li><a href="/guestbook">留言</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>一个基于跨品种价差弱趋势性的策略</a></h3></div><div class="post-content"><h2 id="策略逻辑"><a href="#策略逻辑" class="headerlink" title="策略逻辑"></a>策略逻辑</h2><p>部分大宗商品期货之间具有较强的相关性，其价差趋势性较单品种价格弱，更适合均值回归型策略。基于跨品种价差的日波动范围，通过“低买高卖”的简单策略来提高套利策略的胜率。该策略的核心不在于价差序列的平稳性，也不在于价差变动方向的预测，而在于价差仓位的管理节奏。</p>
+<h2 id="定义-amp-解释"><a href="#定义-amp-解释" class="headerlink" title="定义 &amp; 解释"></a>定义 &amp; 解释</h2><ul>
+<li><p>spd_last: 品种对的最新价差</p>
+</li>
+<li><p>spd_last_chg: 品种对的最新价差的变化($spd_last_chg_{t} = spd_last_{t} - spd_last_{t-1}$)</p>
+</li>
+<li><p>spd_high_last: 自每日开盘，品种对价差的最大值与品种对最新价差之差($spd_high_last_{t} = spd_high_{t} - spd_last_{t}$)</p>
+</li>
+<li><p>spd_last_low: 自每日开盘，品种对最新价差与品种对价差的最小值之差($spd_high_last_{t} = spd_last_{t} - spd_low_{t}$)</p>
+</li>
+<li><p>spd_range: 自每日开盘，品种对价差的最大值与品种对价差的最小值之差($spd_range_{t} = spd_high_{t} - spd_low_{t}$)</p>
+</li>
+<li><p>nav_pct_chg: nav变动百分比($nav_chg_chg_{t} = nav_{t} / nav_{t-1} - 1$)</p>
+</li>
+<li><p>nav_dd: nav的回撤比率($nav_dd_{t} = nav_{t} / max(nav_{t - n, t})$)。目前滚动窗口设置为60（一个小时）</p>
+</li>
+<li><p>ref: 品种对回测前15日内的spd_range的百分位对应的值。目前该百分位值设置为50%对应的值</p>
+</li>
+<li><p>entry_again: 品种对下次加仓需要达到的spd_last</p>
+</li>
+<li><p>$P_{avg}$: 品种对价差的持仓平均成本($P_{avg} = \frac{\sum_{i=1}^{t}P_{i}\times N_{i}}{\sum_{i=1}^{t}N_{i}}$，其中$P_{i}$和$N_{i}$分别为第i次建仓的价格与手数)，其中$N_{i}$为品种对第i次建仓手数</p>
+</li>
+<li><p>$P_{sl}$: 品种对止损需要达到的spd_last。品种对做多的$P_{sl}$: $P_{sl} = P_{avg} - \frac{NAV \times loss_budget}{N_{pos}\times multiplier}$；品种对做空的$P_{sl}$: $P_{sl} = P_{avg} + \frac{NAV \times loss_budget}{N_{pos}\times multiplier}$，其中$N_{i}$为品种对第i次建仓手数</p>
+</li>
+<li><p>$P_{tp}$: 品种对止盈需要达到的spd_last。品种对做多的$P_{tp}$: $P_{tp} = P_{avg} + ref \times tp_factor \times adj_factor$; 品种对做空的$P_{tp}$: $P_{tp} = P_{avg} - ref \times tp_factor \times adj_factor$</p>
+</li>
+<li><p>return: 品种对的价差变动百分比</p>
+</li>
+<li><p>strat_rtn: 品种对的浮动持仓盈利或亏损百分比</p>
+</li>
+<li><p>strat_pnl: 品种对的浮动持仓盈利或亏损值</p>
+</li>
+<li><p>strat_pnl_ratio: 品种对的浮动持仓盈利或亏损值 / nav</p>
+</li>
+<li><p>n_open: 开仓状态编号。例如，n_open=1代表第1次开多仓，n_open=-4代表第4次开空仓</p>
+</li>
+<li><p>loss_budget: 止损阈值，本文设定为0.03</p>
+</li>
+<li><p>adj_factor: 建仓阈值，本文设定为0.5</p>
+</li>
+<li><p>tp_factor: 止盈阈值，本文设定为0.8</p>
+</li>
+<li><p>risk_value: 品种对的风险价值($risk_value = ref \times multiplier$)</p>
+</li>
+<li><p>position: 持仓方向、</p>
+</li>
+<li><p>open_cost: 上次开仓价</p>
+</li>
+<li><p>avg_cost: 开仓均价</p>
+</li>
+</ul>
+<h2 id="数据来源与处理"><a href="#数据来源与处理" class="headerlink" title="数据来源与处理"></a>数据来源与处理</h2><p>本文选取了A_M, SF_SM, L_V, Y_P, C_CS五个品种对作为价差策略的回测对象。所选取的五个品种对为交易所上市的价差对品种，可直接交易。对于其他高相关品种，读者也可自行构造品种对。如果该品种对为非交易所上市价差对，则需要自行设置套利下单。本文主体分为数据分析和策略回测两个部分，两个部分的数据来源皆为Wind，数据时间截至2021年5月26日。数据分析部分的运行环境为Rlang 4.03，回测部分的运行环境为Python 3.8.5。</p>
+<p>在数据分析部分，数据分为日频级和1分钟频级两个版本。前者时间跨度为3年，主要用来观测品种对价差的整体变化；后者时间跨度为15个交易日，主要用来分析每日spd_last、spd_high_last、spd_last_low的变化规律。数据处理步骤如下：首先，获取了各品种对中两个品种各自的收盘价时间序列。接着，将两个品种的时间序列按照时间合并，计算出两者在每一时间点的价差spd_last。对于分钟频级的数据，需要先根据品种对的每日开盘时间划分交易日，然后计算出自每一交易日开盘以来spd_high、spd_low的变化。通过$spd_high_{t} - spd_last_{t}$及$spd_last_{t} - spd_low_{t}$可以分别计算出每一时点上spd_high_last及spd_last_low的值。</p>
+<p>在策略回测部分，获取过去约200个交易日的1分钟频级数据，数据处理方式与数据分析部分一致。需要注意的是，回测部分直接使用每个品种主力合约的分钟收盘价数据，没有对合约更替进行调整。尽管如此，由于所选品种一年主力合约更替次数大约3次，该问题不会对分析结果产生重大影响。</p>
+<h2 id="数据分析与统计"><a href="#数据分析与统计" class="headerlink" title="数据分析与统计"></a>数据分析与统计</h2><p>下面展示了每个品种对的价差历史变化。左图为每个品种过去3年日频级的spd_last与spd_last_chg的变化，右图展示了其过去三周spd_last、spd_last_range、spd_high_last、spd_last_low、spd_range的变化。</p>
+<p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/20210527104006.png"></p>
+<p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/20210527090302.png"></p>
+<p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/20210527090457.png"></p>
+<p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/20210527090528.png"></p>
+<p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/20210527090641.png"></p>
+<p>从上图可以看出，品种对的价差明显不具备协整性。以L_V为例，其过去3年的价差序列呈现明显的下行趋势，其过去3周的spd_last同样存在明显的趋势性。其他品种对过去3年的日频级价差与过去3周的分钟频级价差亦然，因此直接以品种对价差进行“低买高卖”的跨品种套利策略不具备现实可行性。然而，这些品种对的spd_range、spd_high_last、spd_last_low则呈现出明显的周期性，趋势性非常不明显。基于这些指标的短期周期性及弱趋势性特征，可以构造一个跨品种价差套利策略。</p>
+<h2 id="策略回测"><a href="#策略回测" class="headerlink" title="策略回测"></a>策略回测</h2><h3 id="回测设计"><a href="#回测设计" class="headerlink" title="回测设计"></a>回测设计</h3><ul>
+<li>首先，将原始数据切分为10等份，每份数据含有20个交易日的数据。将前15个交易日的数据进行数据分析/统计（本文称之为“训练集”），将后5个交易日的数据进行回测（本文称之为“训练集”）。因此，一共进行10轮固定窗口回测，每轮回测时间跨度为5个交易日。</li>
+<li>然后，对于每份训练集，分别统计spd_last, spd_high_last, spd_last_low, spd_range在从第0至第100个百分位点上对应的值。这些值代表了回测开始前15个交易日上各指标的分布。选取spd_range其中一个百分位点上对应的值作为此轮回测的阈值ref。</li>
+<li>建仓规则：<ul>
+<li>若当前无仓位，且此时价差对当日振幅触及其对应ref时，反向开仓，标记当时价格为P1</li>
+<li>若当前已有仓位，且此时价格较上次价格向不利方向偏移ref $\times$ adj_factor的幅度，继续开仓</li>
+<li>同一品种在同一持仓方向下最多可建仓4次，每次的建仓手数比例为1:1:2:4，每份比例的建仓数目为$nav_{t} \times loss_budget / (N \times risk_value_{i})$，其中N为品种对数目。例如，若某一品种的每份比例的建仓数目为2，则该品种最多可持仓 2+2+4+8=16手。</li>
+</ul>
+</li>
+<li>止盈规则：若多头持仓，且当前spd_last &gt; $P_{tp}$，平掉所有仓位；若空头持仓，且当前spd_last &lt; $P_{tp}$，平掉所有仓位</li>
+<li>止损规则：若多头持仓，且当前spd_last &lt; $P_{sl}$，平掉所有仓位；若空头持仓，且当前spd_last &gt; $P_{sl}$，平掉所有仓位</li>
+<li>时间控制：为了避免日间价格缺口的影响，每个交易日14: 55: 00平掉所有仓位</li>
+</ul>
+<h3 id="回测结果与分析"><a href="#回测结果与分析" class="headerlink" title="回测结果与分析"></a>回测结果与分析</h3><p>10轮回测的结果如下所示。由下表可知，该策略在9轮回测中取得了正收益，仅在第0轮回测出现了略微亏损。在第2轮和第6轮回测中，策略分别取得了136%和242%的年化总收益率；在其他轮次的回测中，策略同样取得了非常优异的表现。不足之处在于，策略回撤幅度偏大，收益率曲线不稳定。若提高ref对应的百分位阈值，则建仓标准更加严格，有助于提高策略的胜率。不过，该做法同时会减少建仓的次数，也有可能降低策略收益。</p>
+<p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/20210527132950.png"></p>
+<p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/20210527133632.png"></p>
+<p>后期改进的方向包括以下几点：1. 结合对宏观面的前瞻性判断，提前筛选出适合该策略的品种对；2. 根据对未来的市场行情的预判，选择合适的阈值，避免阈值过拟合；3. 交易过程中阈值的自适应调整。</p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2021-05-27</span><i class="fa fa-tag"></i><span class="leancloud_visitors"></span></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://Mjzs12138.github.io/2021/05/27/一个基于跨品种价差弱趋势性的策略/,明镜止水的Blog,一个基于跨品种价差弱趋势性的策略,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2021/05/28/%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8E%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%9A%84%E8%B6%8B%E5%8A%BF%E7%AD%96%E7%95%A5/" title="一个基于线性回归的趋势策略">上一篇</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2021/02/25/1%E5%B0%8F%E6%97%B6%E6%9E%84%E5%BB%BA%E7%A8%B3%E5%AE%9A%E4%BA%A4%E6%98%93%E4%BD%93%E7%B3%BB/" title="1小时构建稳定交易体系">下一篇</a></li></ul></div><script src="/js/visitors.js"></script><a id="comments"></a><div id="vcomments" style="margin:0 30px;"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//cdn.jsdelivr.net/gh/xcss/valine@latest/dist/Valine.min.js"></script><script>var valine = new Valine({
+  el:'#vcomments',
+  notify:false || false, 
+  verify:false|| false, 
+  app_id:'',
+  app_key:'',
+  placeholder:'念念不忘，必有回响...',
+  path: window.location.pathname,
+  serverURLs: '',
+  visitor:true,
+  recordIP:true,
+  avatar:'mp'
+})</script></div></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>
