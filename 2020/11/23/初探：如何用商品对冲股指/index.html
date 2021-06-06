@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Core"><title>初探：如何用商品对冲股指 · 明镜止水的Blog</title><meta name="description" content="本文前言狭义上的尾部风险指较大回撤 (Drawdown) 幅度的不确定性（做多时的风险），即收益率分布的左尾(Left Tail或Negative Tail)；
 广义上的尾部风险还包括较大Drawup幅度的不确定性（做空时的风险），即收益率分布曲线的右尾(Right Tail或Positive Ta"><meta name="keywords" content="极限博客,极限Blog,博客,极限"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 5.4.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">明镜止水的Blog</a></h3><div class="description"><p>心之所愿，无事不成。<br> Nothing is impossible to a willing heart.</p></div></div></div><ul class="social-links"><li><a target="_blank" rel="noopener" href="https://github.com/mrcore"><i class="fa fa-github"></i></a></li><li><a href="mailto:x@jixian.io"><i class="fa fa-envelope"></i></a></li><li><a target="_blank" rel="noopener" href="http://sighttp.qq.com/authd?IDKEY="><i class="fa fa-qq"></i></a></li><li><a target="_blank" rel="noopener" href="https://zhihu.com/people/"><i class="fa fa-mortar-board"></i></a></li></ul><div class="footer"><div class="p"> <span>© 2017 - 2020 </span><i class="fa fa-star"></i><span> Core</span></div><div class="by_farbox"><span>Powered by </span><a href="https://hexo.io/zh-cn/" target="_blank">Hexo </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core  </a></div><div class="beian"><a href="http://www.beian.miit.gov.cn/" target="_blank">粤ICP备15011643号</a><span style="height:10px;margin-left: 10px;">|</span><img src="/images/gongan.png" style="height:10px;margin-left: 10px;position: relative;top: 1px;"><span style="margin-left: 2px;">粤公网安备 44030402003967号</span></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/archives">归档</a></li><li><a href="/tags">标签</a></li><li><a href="/about">关于</a></li><li><a href="/guestbook">留言</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>初探：如何用商品对冲股指</a></h3></div><div class="post-content"><h2 id="本文前言"><a href="#本文前言" class="headerlink" title="本文前言"></a>本文前言</h2><p>狭义上的尾部风险指较大回撤 (Drawdown) 幅度的不确定性（做多时的风险），即收益率分布的左尾(Left Tail或Negative Tail)；</p>
 <p>广义上的尾部风险还包括较大Drawup幅度的不确定性（做空时的风险），即收益率分布曲线的右尾(Right Tail或Positive Tail)。</p>
-<p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/qWDRwXOLNTwlDSKu74oNFDOP5uBYVeJicbkRcqrdicDNc4Gnibicys5avAwNLBoPgJDVUTxFIicvjtJYnYeCleBMCbg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/20210606103959.png"></p>
 <p>市场尾部事件具有发生频率低、收益影响大的特点。当市场处于左尾区间时，市场空头收益剧增，多头严重亏损；当市场处于右尾区间时，情况正好相反。</p>
 <p>对冲左尾风险有利于减少市场大幅下行时对投资组合收益的负面冲击影响。一般情况下，可以通过在权益资产组合中增加高信用债券或国债来分散和对冲该类市场风险。</p>
 <p>然而，传统的债券分散化对冲的方法存在明显的局限性。比如，股市牛市行情下，国债多头持仓倾向于蚕食投资组合收益。若金融市场主要是流动性驱动，股债同涨同跌的情况也非常普遍。</p>
@@ -34,23 +34,37 @@
 <hr>
 <h2 id="分析结果"><a href="#分析结果" class="headerlink" title="分析结果"></a>分析结果</h2><p>下面几张图分别展示了IF02主力合约调整价格发生10%+、15%+、20% + Drawdown的区间及1std、2std、3stdDrawup的区间。</p>
 <p>需要注意的是，Drawdown或Drawup较小区间会涵盖较大区间；比如，Drawdown 10%的区间会包含Drawdown 20%和Drawdown 30%的区间。</p>
-<p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/qWDRwXOLNTwlDSKu74oNFDOP5uBYVeJicfibiaxZBwjibTxlEqTrlNdN3Cs0tFUtsZbLloJicQibZcKpqk1FXfR7HkSQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<table>
+    <tr>
+        <td><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/20210606111049.png"></td>
+        <td><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/20210606111127.png"></td>
+    </tr>
+    <tr>
+        <td><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/20210606111204.png"></td>
+        <td><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/20210606111230.png"></td>
+    </tr>
+    <tr>
+        <td><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/20210606111256.png"></td>
+        <td><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/20210606111326.png"></td>
+    </tr>
+</table>
+
 <p>下表展示了各大宗商品期货在非尾部市场区间与IF02收益率的相关性及显著性水平。与预期和设想一致，在非尾部市场区间中，绝大部分商品期货品种与IF02的收益率相关性不显著（注：铜、铝、锌、菜油、白糖、塑料、螺纹钢等品种有时例外）。</p>
-<p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/qWDRwXOLNTwlDSKu74oNFDOP5uBYVeJicYibibP0ic5bHOJDu5SEhiay2InhQsjWTKuV0iaqCveEx5CK7Z1nxZONagyw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/20210606111934.jpeg"></p>
 <p>根据分析得到下表：IF02在尾部区间时，整理计算出各大宗商品期货品种在这些区间上的价格变动、波动率、夏普率等指标。下表是部分品种在Drawdown 20%区间上的各分析指标（部分品种由于上市晚，缺少数据则相关分析计算为空白缺失）。</p>
-<p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/qWDRwXOLNTwlDSKu74oNFDOP5uBYVeJiclnP66owNQufqaMnhZvf99X0Pk9kFrE9ZrGS9pJowCAOs1DibLs84nIA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/20210606112950.jpeg"></p>
 <p>下表是部分品种在Drawup 3std区间上的各分析指标，可以得出基本结论：Drawup的正尾行情下，大部分商品期货品种与IF02相关性的稳定性也比较较弱（即大部分时候，股市的上涨驱动和大多数商品期货的上涨驱动不同）：</p>
-<p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/qWDRwXOLNTwlDSKu74oNFDOP5uBYVeJic2WHETE8vVnLAHegMqjBeBcvaRLezOeno1Uic2ft9wBwgibwlfbuY9TMQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/20210606113021.jpeg"></p>
 <hr>
 <h2 id="分析整理"><a href="#分析整理" class="headerlink" title="分析整理"></a>分析整理</h2><p>为直观展示各大宗商品期货与股市尾部行情中收益的相关性，本文对每个尾部区间上所有大宗商品期货的相关性进行了排序，挑出每个尾部区间上相关性最强的五个品种。下图展示了在Drawdown 20%和Drawup 3std上与市场收益相关性关系最强的前五个品种。</p>
-<p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/qWDRwXOLNTwlDSKu74oNFDOP5uBYVeJicHAVUbEBGPUBsr1ULfCqOzMrEiaMFuPC5b6lONsbvttyRtFuBw8Fp6Kg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/20210606113116.png"></p>
 <hr>
-<p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/qWDRwXOLNTwlDSKu74oNFDOP5uBYVeJic5MXlHQM7UaGClLmSaEmqZZicq0Xh2iaSicvAQZqiaXjTLia6R746tqtVOfQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/20210606113331.png"></p>
 <hr>
 <p>对各大宗商品期货在所有尾部市场区间上排名前五品种出现的频数进行了统计。所有IF02出现定义的左尾Drawdown时，其统计结果展示如下：</p>
-<p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/qWDRwXOLNTwlDSKu74oNFDOP5uBYVeJicTJOPNZZMicjV52wb5AHL1YqHrF6hNhc4ajibdicZUdl5CYP3WRsQ3cFVg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
-<p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/qWDRwXOLNTwlDSKu74oNFDOP5uBYVeJicPlydbOkdOafHPGQnXoYO8AaOUFO3fzrZgdVaAmB9GQBUiccfUepibQqA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
-<p><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/qWDRwXOLNTwlDSKu74oNFDOP5uBYVeJicfLxzpBxjyNQT0Ry4eDnTavgibh9XibZT1eVTfsChmRJkQG66h0kOibLMg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="图片"></p>
+<p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/20210606114108.png"></p>
+<p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/20210606114128.png"></p>
+<p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/20210606114141.png"></p>
 <p>统计结果表明，金属系商品期货与IF02的左尾市场收益率相关性较强，其次是化工系商品期货。其中铜、锌、螺纹钢、橡胶、铝、PVC、塑料、镍等品种与IF02左尾市场收益率的相关性尤其稳定和明显。农产品系品种与IF02左尾市场收益率的相关性则较弱且不稳定。</p>
 <p>因此，可以在金属系和化工系的商品期货中挑选出一些与左尾市场收益率相关性较强的品种，如橡胶、PVC和镍等。尤其值得注意的是，橡胶还符合长期期货升水结构的特征。</p>
 <hr>
