@@ -1,0 +1,74 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Core"><title>交易时段转换期间的“较大乖离-价格调整”关系研究 · 明镜止水的Blog</title><meta name="description" content="简介乖离率衡量的是资产价格相对移动平均线的偏离幅度。正乖离率意味着资产价格相对过去某段时间内的平均价格较高，反之则较低。乖离率是常用的反转指标之一。一种基于市场经验的观点认为，当乖离率的绝对值较大时，资产价格更容易出现调整；特别地，在交易时段转换期间（即近收盘 / 开盘初的时间段），由于存在时间缺口"><meta name="keywords" content="极限博客,极限Blog,博客,极限"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 5.4.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">明镜止水的Blog</a></h3><div class="description"><p>心之所愿，无事不成。<br> Nothing is impossible to a willing heart.</p></div></div></div><ul class="social-links"><li><a target="_blank" rel="noopener" href="https://github.com/mrcore"><i class="fa fa-github"></i></a></li><li><a href="mailto:x@jixian.io"><i class="fa fa-envelope"></i></a></li><li><a target="_blank" rel="noopener" href="http://sighttp.qq.com/authd?IDKEY="><i class="fa fa-qq"></i></a></li><li><a target="_blank" rel="noopener" href="https://zhihu.com/people/"><i class="fa fa-mortar-board"></i></a></li></ul><div class="footer"><div class="p"> <span>© 2017 - 2020 </span><i class="fa fa-star"></i><span> Core</span></div><div class="by_farbox"><span>Powered by </span><a href="https://hexo.io/zh-cn/" target="_blank">Hexo </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core  </a></div><div class="beian"><a href="http://www.beian.miit.gov.cn/" target="_blank">粤ICP备15011643号</a><span style="height:10px;margin-left: 10px;">|</span><img src="/images/gongan.png" style="height:10px;margin-left: 10px;position: relative;top: 1px;"><span style="margin-left: 2px;">粤公网安备 44030402003967号</span></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/archives">归档</a></li><li><a href="/tags">标签</a></li><li><a href="/about">关于</a></li><li><a href="/guestbook">留言</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>交易时段转换期间的“较大乖离-价格调整”关系研究</a></h3></div><div class="post-content"><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>乖离率衡量的是资产价格相对移动平均线的偏离幅度。正乖离率意味着资产价格相对过去某段时间内的平均价格较高，反之则较低。乖离率是常用的反转指标之一。一种基于市场经验的观点认为，当乖离率的绝对值较大时，资产价格更容易出现调整；特别地，在交易时段转换期间（即近收盘 / 开盘初的时间段），由于存在时间缺口，更容易出现价格调整。本文主要研究了在日/夜盘交易时段转换期间，期货价格乖离幅度与其价格调整幅度之间的关系。</p>
+<h2 id="指标定义"><a href="#指标定义" class="headerlink" title="指标定义"></a>指标定义</h2><ul>
+<li><p>m: 日盘/夜盘收盘前的第m个bar。本文中取m = 1: 3</p>
+</li>
+<li><p>n：日盘/夜盘开盘后的第n个bar。本文中取n = 1: 3</p>
+</li>
+<li><p>ma：每个交易日的累积平均close。例如，$ma_{t = 10} = \sum_{t = 1}^{10}close_{t} / 10$</p>
+</li>
+<li><p>dev_pct: 乖离率（$dev_pct = (close - ma) / ma $）</p>
+</li>
+<li><p>dev: 乖离值 （$dev = close - ma$）</p>
+</li>
+<li><p>night_close_end: 夜盘收盘前的第m个close（$close_{m}$）</p>
+</li>
+<li><p>day_close_end: 日盘收盘前的第m个close（$close_{m}$）</p>
+</li>
+<li><p>night_close_begin: 下一个夜盘开盘后的第n个close（$close_{n}$）</p>
+</li>
+<li><p>day_close_begin: 下一个日盘开盘后的第n个close （$close_{n}$）</p>
+</li>
+<li><p>night_dev_end: 夜盘收盘前的第m个dev_pct（$dev_pct_{m}$）</p>
+</li>
+<li><p>day_dev_end: 日盘收盘前的第m个dev_pct（$dev_pct_{m}$）</p>
+</li>
+<li><p>adjustment: 日盘开盘close相对夜盘收盘的价格调整 ($adjustment = close_{n} / close_{m} - 1$)</p>
+</li>
+<li><p>dev_direction: 收盘时前m个时点，dev若为正，则dev_direction为Positive，否则为Negative</p>
+</li>
+<li><p>reverse_day_ratio: 该比率衡量的是日盘(夜盘)收盘前乖离为正（负）时，夜盘(日盘)开盘时adjustment为负（正）的天数占统计天数的比率。计算该比率时，只取了所统计的60个交易日中，$dev_pct_{m}$最大与最小各6个点（即60个交易日中的$dev_pct_{m}$最大与最小各前10%个交易日的数据），因而每个品种用到的总样本数为 $6 \times 2 \times 9 = 108$</p>
+</li>
+</ul>
+<h2 id="数据来源与处理"><a href="#数据来源与处理" class="headerlink" title="数据来源与处理"></a>数据来源与处理</h2><p>本研究的数据来源为Wind，数据处理工具为Rlang。实验数据涵盖中国期货市场50个品种，数据跨度约60个交易日（2021年3月15日至2021年6月10日），数据频级为5分钟。由于不少期货品种有夜盘，本文首先根据具体自然日时间对交易日进行了划分，并将交易日作为统计分析的时间框架。之后，再进行过去60个交易日中各品种dev与dev_pct的计算，并对上述指标进行统计。接着，根据统计结果，对有夜盘的各品种进行各交易时段转换期间的“较大乖离-价格调整”研究。</p>
+<h2 id="乖离率范围统计"><a href="#乖离率范围统计" class="headerlink" title="乖离率范围统计"></a>乖离率范围统计</h2><p>为了方便后续策略参数设计，本文统计了中国期货市场50种期货合约过去60个交易日中每日的dev与dev_pct的最大值、最小值、平均值、中位数、各百分位点上的值。乖离率的统计结果如下图所示，其中0.05~0.95分别代表了5个百分位点～95个百分位点上的值。需要注意的是，由于各品种的波动率水平不同，乖离率难以横向对比，下图仅提供借鉴参考。</p>
+<p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/20210612124829.png"></p>
+<h2 id="乖离-调整幅度关系研究"><a href="#乖离-调整幅度关系研究" class="headerlink" title="乖离 - 调整幅度关系研究"></a>乖离 - 调整幅度关系研究</h2><p>一种观点认为，若资产价格出现临近收盘时出现较大乖离，其价格在下个交易时段开盘时往往会出现调整。若该观点成立，则可以通过在每个交易时段临近结束时挑选乖离程度相较过往较高的品种进行反向交易进行获利。譬如，若品种A当日的$dev_pct_{m}$为正，且在过去3个月的$dev_pct_{m}$中居于前10%的百分位上，通过在尾盘时卖出A合约，并在下一个交易时段开始时平仓获利。</p>
+<p>为了验证该观点，本文从50个期货品种中，挑选39个有夜盘交易的品种进行统计分析。统计分析分为两个版本，版本一为“夜盘收盘-下一个日盘开盘”时段的乖离 - 调整幅度关系研究，版本二为“日盘收盘 - 下一个夜盘开盘”时段的乖离 - 调整幅度关系研究。</p>
+<p>为了更加完整地反映乖离幅度与调整幅度的关系，本文还将adjustment的统计范围扩大至开盘后第1、2、3个5分钟close相对收盘前第1、2、3个5分钟close的变动幅度。因此，在原来的两个版本的基础上，又衍生了9个版本的乖离 - 调整幅度关系的统计，即“下一个交易时段第一个5分钟close相对于上一个交易时段最后第一个5分钟close的价格调整幅度”、“下一个交易时段第二个5分钟close相对于上一个交易时段最后第一个5分钟close的价格调整幅度”、…、“下一个交易时段第三个5分钟close相对于上一个交易时段最后第三个5分钟close的价格调整幅度”。</p>
+<p>由于统计版本众多，下面只展示“夜盘收盘-下一个日盘开盘”与“日盘收盘 - 下一个夜盘开盘”时段下“下一个交易时段第一个5分钟close相对于上一个交易时段最后第一个5分钟close的价格调整幅度”的关系散点图。每个子图中，x轴表示$dev_pct_{m}$，y轴表示$close_{n} / close_{m} - 1$（即调整幅度）。</p>
+<table>    
+  <tr>
+        <td><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/20210612135319.png"></td>
+        <td><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/20210612135449.png"></td>
+    </tr>
+</table>
+
+<p>由上图可以看出，对于大部分期货品种，当$dev_pct_{m}$在一般区间时，adjustment缺乏明显的方向性。然而，当$dev_pct_{m}$的绝对值较大时，部分品种的adjustment则有明显的方向性。以“夜盘收盘-下一个日盘开盘”版本的EG为例，当$dev_pct_{m}$的绝对值较大时，其$dev_pct_{m}$与adjustment存在相对明显的反相关关系：当$dev_pct_{m}$低于-0.5%时，adjustment大多时候处于0上方；当$dev_pct_{t}$大于0.5%时，adjustment大多时候处于0下方。类似的还有FG、FU、I、L、MA、RB、PP、SC等品种。从上图也可以看出，大幅乖离 &amp; 调整的模式在“夜盘收盘-下一个日盘开盘”的时间段内更加明显。</p>
+<p>由于图表众多，为了方便观察，本文将9个版本的“较大乖离-价格调整”关系的数据进行了汇总：对于每个品种，从每个版本中筛选出$dev_pct_{m}$最大、最小各6个数据点，即总样本数的20%，并将这最大、最小各6个数据点分别视为该品种在过去60天中$dev_pct_{m}$较大、较小的情况。将这$6 \times 2 \times 9 = 108$个数据点绘制在一起，分别得到下面两图，分别为“夜盘收盘-下一个日盘开盘”版本与“日盘收盘 - 下一个夜盘开盘”版本的关系散点图。下图能够更加凸显较大乖离的情况下，$dev_pct_{m}$与adjustment之间的关系。</p>
+<p><img src="/Users/mjzs/Projects/devadjust/db/devadjust_all.png" alt="devadjust_all"></p>
+<p>此外，基于上图本文还构造了一个reverse_day_ratio指标。该比率衡量的是日盘（夜盘）收盘前乖离为正（负）时，夜盘（日盘）开盘时adjustment为负（正）的天数占$6 \times 9 = 54$天中的比率。该指标衡量的是“当$dev_pct_{m}$位于左（右）末端时，adjustment大于（小于）零”的点的比重，即前一个交易时段末出现乖离较大的情况下，下一个交易时段之初价格出现调整的可能性。该指标统计如下图所示。</p>
+<p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/20210612144012.png"></p>
+<p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/master/img/20210612150540.png"></p>
+<p>若以80%作为“较大乖离 - 价格调整关系较稳定“的分水岭，可以得到的初步结论包括以下几点。</p>
+<ul>
+<li>对于大部分品种而言，“较大乖离 - 价格调整”关系并不十分稳定。不过，大部分品种在乖离较大的情况下，下一个交易时段之初出现价格调整的概率仍然较大（大部分品种在大部分情况下的day_reverse_ratio &gt; 50%）。</li>
+<li>“较大乖离 - 价格调整”关系最稳定的品种以能化类为主。NI较特殊，该品种类别为有色类，且为“较大乖离 - 价格调整”关系最稳定的品种之一。</li>
+<li>相较“日盘收盘 - 下一个夜盘开盘”版本，“夜盘收盘 - 下一个日盘开盘”版本中“较大乖离 - 价格调整”关系整体更加稳定。</li>
+<li>相较dev_direction为Positive的情况，dev_direction为Negative的版本中“较大乖离 - 价格调整”关系整体更加稳定。</li>
+<li>在“夜盘收盘 - 下一个日盘开盘”版本中，当dev_direction为负时，“较大乖离 - 价格调整”关系稳定的品种包括：EG、SC、AL、SR、TA、SA、V、L；当dev_direction为正时，“较大乖离 - 价格调整”关系稳定的品种包括：PP、SC、I、L、BU、NI。其中SC、L在两个版本中“较大乖离 - 价格调整”关系都较稳定。</li>
+<li>在“日盘收盘 - 下一个夜盘开盘”版本中，当dev_direction为负时，“较大乖离 - 价格调整”关系稳定的品种包括：NI、JM、SP、BU、RU、MA、FU、RM、PP；当dev_direction为正时，“较大乖离 - 价格调整”关系稳定的品种包括：NI、JM。其中NI、JM在两个版本中“较大乖离 - 价格调整”关系都较稳定。</li>
+</ul>
+<p>当然，本文还存在一定不足。例如，实验数据获取的是60个交易日的数据，统计结论可能不具有稳健型；市场行情变化较快，筛选出的期货品种可能在不同市场状态下不能普遍适用；数据点的选取只限制在收盘前 / 开盘后3个close的范围内，该限制不一定合理；dev、dev_pct、adjustment的统计基于离散的5分钟close，不一定合适。另外，本文仅探讨了“较大乖离-价格调整”关系，尚未考虑止盈止损规则的设置等现实面因素。</p>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2021-06-12</span><i class="fa fa-tag"></i><span class="leancloud_visitors"></span></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://Mjzs12138.github.io/2021/06/12/交易时段转换期间的“较大乖离-价格调整”关系研究/,明镜止水的Blog,交易时段转换期间的“较大乖离-价格调整”关系研究,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a class="btn" role="navigation" href="/2021/05/28/%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8E%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%9A%84%E8%B6%8B%E5%8A%BF%E7%AD%96%E7%95%A5/" title="一个基于线性回归的趋势策略">下一篇</a></li></ul></div><script src="/js/visitors.js"></script><a id="comments"></a><div id="vcomments" style="margin:0 30px;"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//cdn.jsdelivr.net/gh/xcss/valine@latest/dist/Valine.min.js"></script><script>var valine = new Valine({
+  el:'#vcomments',
+  notify:false || false, 
+  verify:false|| false, 
+  app_id:'',
+  app_key:'',
+  placeholder:'念念不忘，必有回响...',
+  path: window.location.pathname,
+  serverURLs: '',
+  visitor:true,
+  recordIP:true,
+  avatar:'mp'
+})</script></div></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>
