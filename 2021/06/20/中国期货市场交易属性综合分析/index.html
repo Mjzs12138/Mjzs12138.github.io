@@ -1,0 +1,438 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Core"><title>中国期货市场交易属性综合分析 · 明镜止水的Blog</title><meta name="description" content="简介本文主要针对中国期货市场50个品种，对其收益率、波动率、升贴水等各项重要交易属性进行了深入探索和综合分析。正文部分分为以下几个部分。
+
+第一部分展示了各品种重要交易指标的历史时间序列，即各品种历史最长的价格、升贴水、波动率的时间序列。
+第二部分展示了各品种重要交易指标的历史统计，即各品种在不同历"><meta name="keywords" content="极限博客,极限Blog,博客,极限"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 5.4.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">明镜止水的Blog</a></h3><div class="description"><p>心之所愿，无事不成。<br> Nothing is impossible to a willing heart.</p></div></div></div><ul class="social-links"><li><a target="_blank" rel="noopener" href="https://github.com/mrcore"><i class="fa fa-github"></i></a></li><li><a href="mailto:x@jixian.io"><i class="fa fa-envelope"></i></a></li><li><a target="_blank" rel="noopener" href="http://sighttp.qq.com/authd?IDKEY="><i class="fa fa-qq"></i></a></li><li><a target="_blank" rel="noopener" href="https://zhihu.com/people/"><i class="fa fa-mortar-board"></i></a></li></ul><div class="footer"><div class="p"> <span>© 2017 - 2020 </span><i class="fa fa-star"></i><span> Core</span></div><div class="by_farbox"><span>Powered by </span><a href="https://hexo.io/zh-cn/" target="_blank">Hexo </a><span> & </span><a href="https://github.com/mrcore/hexo-theme-Anatole-Core" target="_blank">Anatole-Core  </a></div><div class="beian"><a href="http://www.beian.miit.gov.cn/" target="_blank">粤ICP备15011643号</a><span style="height:10px;margin-left: 10px;">|</span><img src="/images/gongan.png" style="height:10px;margin-left: 10px;position: relative;top: 1px;"><span style="margin-left: 2px;">粤公网安备 44030402003967号</span></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/archives">归档</a></li><li><a href="/tags">标签</a></li><li><a href="/about">关于</a></li><li><a href="/guestbook">留言</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>中国期货市场交易属性综合分析</a></h3></div><div class="post-content"><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>本文主要针对中国期货市场50个品种，对其收益率、波动率、升贴水等各项重要交易属性进行了深入探索和综合分析。正文部分分为以下几个部分。</p>
+<ul>
+<li>第一部分展示了各品种重要交易指标的历史时间序列，即各品种历史最长的价格、升贴水、波动率的时间序列。</li>
+<li>第二部分展示了各品种重要交易指标的历史统计，即各品种在不同历史时段上的年化收益率、年化展期收益、年化波动率、升水时间比率。</li>
+<li>第三部分展示了各品种重要交易指标的历史分布，即各品种历史最长的收益率、升贴水、波动率的分布状况。</li>
+<li>第四部分展示了各品种重要指标的季节性规律，即各品种收益率、波动率、升贴水的季节性分析。</li>
+<li>第五部分展示了各品种近期的风险指标，即各品种在最近1个月和最近3个月上的波动率、VaR、ES、Risk Value。</li>
+<li>第六部分展示了各品种的相关性分析，即各品种在过去半年和过去3年上的相关性（相关系数）。</li>
+<li>第七部分展示了各品种在特殊行情下的价格表现。</li>
+<li>第八部分为附录，附件为本文所分析品种的tickers。</li>
+</ul>
+<p>受篇幅所限，本文暂时不添加文字性分析。后续视情况逐渐完善文字性分析。</p>
+<h2 id="数据来源与处理"><a href="#数据来源与处理" class="headerlink" title="数据来源与处理"></a>数据来源与处理</h2><p>本文分析所用数据来源为Wind日频级数据，时间长度为过去10年；品种历史时序不足10年的，取历史最长数据。原始数据涵盖中国期货市场主要的50个品种连续合约的日收盘价，50个品种的具体合约代码见附件。需要注意的是，为了方便实际交易，本文并非对各品种都选取主力合约；例如，本文对IF、IC、IH选取的是“下季连续合约”，详情见附件。而是。另外，由于期货合约到期更替合约，本文对原始数据进行了前赋权调整，调整后的价格为真实的期货合约市场价格。</p>
+<p>部分指标的解释如下：</p>
+<ul>
+<li>PM: 期货主力合约的名义日收盘价，未对合约展期进行调整</li>
+<li>PS: 期货次主力合约的名义日收盘价，未对合约展期进行调整</li>
+<li>PX: 期货实际日收盘价，即PM经过前赋权调整后的真实日收盘价</li>
+<li>Vol: 期货实际收益率的日波动率。滚动窗口为60个交易日</li>
+<li>Spd_pct: 期货主次合约升贴水率。Spd_pct = PS / PS - 1</li>
+<li>EMA: 指数移动平均价，即期货实际日收盘价的指数移动值</li>
+<li>Fut_AnnReturn: 期货年化实际收益率</li>
+<li>Price_AnnReturn: 期货年化名义收益率</li>
+<li>Roll_AnnReturn: 期货展期年化收益率</li>
+<li>SpreadTime: 升水的时间段占历史时序的比例</li>
+<li>Fut_AnnVol: 期货实际收益率的年化波动率。滚动窗口为60个交易日</li>
+<li>Fut_Sharpe: 夏普比率。Fut_Sharpe = 最近n个交易日的年化累积收益率 / 最近n个交易日的年化日波动率</li>
+<li>Fut_VaR_Long: 期货年化实际收益率第95个百分位点上的VaR（右尾VaR）</li>
+<li>Fut_VaR_Short: 期货年化实际收益率第5个百分位点上的VaR（左尾VaR）</li>
+<li>Annualized Futures Return: 同Fut_AnnReturn</li>
+<li>Annualized Volatility: 同Fut_AnnVol</li>
+<li>Annualized Roll Return: 同Roll_AnnReturn</li>
+<li>Spread Time: 同SpreadTime</li>
+<li>Risk Value: 风险价值。Risk Value = 最新日收盘价 x 合约乘数 x 日波动率</li>
+<li>VaR: 在险价值</li>
+<li>ES: 预期亏空</li>
+</ul>
+<h2 id="重要交易指标的历史时间序列"><a href="#重要交易指标的历史时间序列" class="headerlink" title="重要交易指标的历史时间序列"></a>重要交易指标的历史时间序列</h2><h3 id="历史最长价格时间序列-PX-PM-EMA"><a href="#历史最长价格时间序列-PX-PM-EMA" class="headerlink" title="历史最长价格时间序列(PX, PM, EMA)"></a>历史最长价格时间序列(PX, PM, EMA)</h3><p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/mcreport/ts_mkdata_hist.png"></p>
+<h3 id="过去1年价格时间序列-PX-PM-EMA"><a href="#过去1年价格时间序列-PX-PM-EMA" class="headerlink" title="过去1年价格时间序列(PX, PM, EMA)"></a>过去1年价格时间序列(PX, PM, EMA)</h3><p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/mcreport/ts_mkdata_1y.png"></p>
+<h3 id="历史最长价格时间序列-PX"><a href="#历史最长价格时间序列-PX" class="headerlink" title="历史最长价格时间序列(PX)"></a>历史最长价格时间序列(PX)</h3><p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/mcreport/ts_close.png"></p>
+<h3 id="历史最长日波动率时间序列-Vol"><a href="#历史最长日波动率时间序列-Vol" class="headerlink" title="历史最长日波动率时间序列(Vol)"></a>历史最长日波动率时间序列(Vol)</h3><p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/mcreport/ts_vol.png"></p>
+<h3 id="历史最长升贴水率时间序列-Spd-pct"><a href="#历史最长升贴水率时间序列-Spd-pct" class="headerlink" title="历史最长升贴水率时间序列(Spd_pct)"></a>历史最长升贴水率时间序列(Spd_pct)</h3><p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/mcreport/ts_spd_pct.png"></p>
+<h2 id="重要交易指标的历史统计"><a href="#重要交易指标的历史统计" class="headerlink" title="重要交易指标的历史统计"></a>重要交易指标的历史统计</h2><h3 id="重要指标概览-过去6M-1Y-3Y-5Y-10Y-Hist"><a href="#重要指标概览-过去6M-1Y-3Y-5Y-10Y-Hist" class="headerlink" title="重要指标概览(过去6M / 1Y / 3Y / 5Y / 10Y / Hist)"></a>重要指标概览(过去6M / 1Y / 3Y / 5Y / 10Y / Hist)</h3><p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/mcreport/period_summary.png"></p>
+<h3 id="核心指标短期概览-过去6M-1Y"><a href="#核心指标短期概览-过去6M-1Y" class="headerlink" title="核心指标短期概览(过去6M / 1Y)"></a>核心指标短期概览(过去6M / 1Y)</h3><p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/mcreport/overview_longterm.png"></p>
+<h3 id="核心指标中长期概览-过去3Y-5Y"><a href="#核心指标中长期概览-过去3Y-5Y" class="headerlink" title="核心指标中长期概览(过去3Y / 5Y)"></a>核心指标中长期概览(过去3Y / 5Y)</h3><p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/mcreport/overview_shortterm.png"></p>
+<h2 id="重要交易指标的历史分布"><a href="#重要交易指标的历史分布" class="headerlink" title="重要交易指标的历史分布"></a>重要交易指标的历史分布</h2><h3 id="日收益率的分布-Hist"><a href="#日收益率的分布-Hist" class="headerlink" title="日收益率的分布(Hist)"></a>日收益率的分布(Hist)</h3><p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/mcreport/dist_return.png"></p>
+<h3 id="日波动率的分布-Hist"><a href="#日波动率的分布-Hist" class="headerlink" title="日波动率的分布(Hist)"></a>日波动率的分布(Hist)</h3><p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/mcreport/dist_vol.png"></p>
+<h3 id="升贴水率的分布-Hist"><a href="#升贴水率的分布-Hist" class="headerlink" title="升贴水率的分布(Hist)"></a>升贴水率的分布(Hist)</h3><p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/mcreport/dist_spd_pct.png"></p>
+<h2 id="重要指标的季节性规律"><a href="#重要指标的季节性规律" class="headerlink" title="重要指标的季节性规律"></a>重要指标的季节性规律</h2><h3 id="月收益率的季节性变动"><a href="#月收益率的季节性变动" class="headerlink" title="月收益率的季节性变动"></a>月收益率的季节性变动</h3><p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/mcreport/seasonal_return.png"></p>
+<h3 id="年化月波动率的季节性变动"><a href="#年化月波动率的季节性变动" class="headerlink" title="年化月波动率的季节性变动"></a>年化月波动率的季节性变动</h3><p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/mcreport/seasonal_vol.png"></p>
+<h3 id="月平均升贴水率的季节性变动"><a href="#月平均升贴水率的季节性变动" class="headerlink" title="月平均升贴水率的季节性变动"></a>月平均升贴水率的季节性变动</h3><p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/mcreport/seasonal_spd_pct.png"></p>
+<h2 id="近期的风险指标"><a href="#近期的风险指标" class="headerlink" title="近期的风险指标"></a>近期的风险指标</h2><h3 id="波动率、风险价值、VaR、ES统计-过去1M-3M"><a href="#波动率、风险价值、VaR、ES统计-过去1M-3M" class="headerlink" title="波动率、风险价值、VaR、ES统计(过去1M / 3M)"></a>波动率、风险价值、VaR、ES统计(过去1M / 3M)</h3><p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/mcreport/risk.png"></p>
+<h2 id="相关性分析"><a href="#相关性分析" class="headerlink" title="相关性分析"></a>相关性分析</h2><h3 id="品种短期相关性相关图-过去6M"><a href="#品种短期相关性相关图-过去6M" class="headerlink" title="品种短期相关性相关图(过去6M)"></a>品种短期相关性相关图(过去6M)</h3><ul>
+<li>备注：由于部分品种时间序列不足3年，相关图中该品种位置出现空白缺失。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/mcreport/corr_6m.png"></p>
+<h3 id="品种中长期相关性相关图-过去3Y"><a href="#品种中长期相关性相关图-过去3Y" class="headerlink" title="品种中长期相关性相关图(过去3Y)"></a>品种中长期相关性相关图(过去3Y)</h3><p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/mcreport/corr_3y.png"></p>
+<h2 id="特殊行情下的价格表现"><a href="#特殊行情下的价格表现" class="headerlink" title="特殊行情下的价格表现"></a>特殊行情下的价格表现</h2><ul>
+<li>备注：橙色为2014中国股市泡沫时期；蓝色为2015年中国股市崩盘时期；绿色为COVID-19时期。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Mjzs12138/Pics/mcreport/ts_special_period.png"></p>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><h3 id="各期货品种tickers"><a href="#各期货品种tickers" class="headerlink" title="各期货品种tickers"></a>各期货品种tickers</h3><table>
+<thead>
+<tr>
+<th>symbol</th>
+<th>main</th>
+<th>sub</th>
+<th>multiplier</th>
+<th>sector</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>IF</td>
+<td>IF02.CFE</td>
+<td>IF03.CFE</td>
+<td>10</td>
+<td>financial</td>
+</tr>
+<tr>
+<td>IH</td>
+<td>IH02.CFE</td>
+<td>IH03.CFE</td>
+<td>10</td>
+<td>financial</td>
+</tr>
+<tr>
+<td>IC</td>
+<td>IC02.CFE</td>
+<td>IC03.CFE</td>
+<td>200</td>
+<td>financial</td>
+</tr>
+<tr>
+<td>TS</td>
+<td>TS01.CFE</td>
+<td>TS02.CFE</td>
+<td>20000</td>
+<td>financial</td>
+</tr>
+<tr>
+<td>TF</td>
+<td>TF01.CFE</td>
+<td>TF02.CFE</td>
+<td>10000</td>
+<td>financial</td>
+</tr>
+<tr>
+<td>T</td>
+<td>T01.CFE</td>
+<td>T02.CFE</td>
+<td>10000</td>
+<td>financial</td>
+</tr>
+<tr>
+<td>AU</td>
+<td>AU.SHF</td>
+<td>AU_S.SHF</td>
+<td>1000</td>
+<td>financial</td>
+</tr>
+<tr>
+<td>AG</td>
+<td>AG.SHF</td>
+<td>AG_S.SHF</td>
+<td>15</td>
+<td>financial</td>
+</tr>
+<tr>
+<td>CU</td>
+<td>CU01.SHF</td>
+<td>CU02.SHF</td>
+<td>5</td>
+<td>nonferrous</td>
+</tr>
+<tr>
+<td>AL</td>
+<td>AL01.SHF</td>
+<td>AL02.SHF</td>
+<td>5</td>
+<td>nonferrous</td>
+</tr>
+<tr>
+<td>ZN</td>
+<td>ZN01.SHF</td>
+<td>ZN02.SHF</td>
+<td>5</td>
+<td>nonferrous</td>
+</tr>
+<tr>
+<td>PB</td>
+<td>PB01.SHF</td>
+<td>PB02.SHF</td>
+<td>5</td>
+<td>nonferrous</td>
+</tr>
+<tr>
+<td>NI</td>
+<td>NI01.SHF</td>
+<td>NI02.SHF</td>
+<td>1</td>
+<td>nonferrous</td>
+</tr>
+<tr>
+<td>SN</td>
+<td>SN01.SHF</td>
+<td>SN02.SHF</td>
+<td>1</td>
+<td>nonferrous</td>
+</tr>
+<tr>
+<td>P</td>
+<td>P.DCE</td>
+<td>P_S.DCE</td>
+<td>10</td>
+<td>agriculture</td>
+</tr>
+<tr>
+<td>Y</td>
+<td>Y.DCE</td>
+<td>Y_S.DCE</td>
+<td>10</td>
+<td>agriculture</td>
+</tr>
+<tr>
+<td>OI</td>
+<td>OI.CZC</td>
+<td>OI_S.CZC</td>
+<td>10</td>
+<td>agriculture</td>
+</tr>
+<tr>
+<td>A</td>
+<td>A.DCE</td>
+<td>A_S.DCE</td>
+<td>10</td>
+<td>agriculture</td>
+</tr>
+<tr>
+<td>M</td>
+<td>M.DCE</td>
+<td>M_S.DCE</td>
+<td>10</td>
+<td>agriculture</td>
+</tr>
+<tr>
+<td>RM</td>
+<td>RM.CZC</td>
+<td>RM_S.CZC</td>
+<td>10</td>
+<td>agriculture</td>
+</tr>
+<tr>
+<td>C</td>
+<td>C.DCE</td>
+<td>C_S.DCE</td>
+<td>10</td>
+<td>agriculture</td>
+</tr>
+<tr>
+<td>CS</td>
+<td>CS.DCE</td>
+<td>CS_S.DCE</td>
+<td>10</td>
+<td>agriculture</td>
+</tr>
+<tr>
+<td>JD</td>
+<td>JD.DCE</td>
+<td>JD_S.DCE</td>
+<td>10</td>
+<td>agriculture</td>
+</tr>
+<tr>
+<td>SR</td>
+<td>SR.CZC</td>
+<td>SR_S.CZC</td>
+<td>10</td>
+<td>agriculture</td>
+</tr>
+<tr>
+<td>CJ</td>
+<td>CJ.CZC</td>
+<td>CJ_S.CZC</td>
+<td>5</td>
+<td>agriculture</td>
+</tr>
+<tr>
+<td>AP</td>
+<td>AP.CZC</td>
+<td>AP_S.CZC</td>
+<td>10</td>
+<td>agriculture</td>
+</tr>
+<tr>
+<td>CF</td>
+<td>CF.CZC</td>
+<td>CF_S.CZC</td>
+<td>5</td>
+<td>agriculture</td>
+</tr>
+<tr>
+<td>CY</td>
+<td>CY.CZC</td>
+<td>CY_S.CZC</td>
+<td>5</td>
+<td>agriculture</td>
+</tr>
+<tr>
+<td>PG</td>
+<td>PG.DCE</td>
+<td>PG_S.DCE</td>
+<td>20</td>
+<td>chemical</td>
+</tr>
+<tr>
+<td>SC</td>
+<td>SC.INE</td>
+<td>SC_S.INE</td>
+<td>1000</td>
+<td>chemical</td>
+</tr>
+<tr>
+<td>BU</td>
+<td>BU.SHF</td>
+<td>BU_S.SHF</td>
+<td>10</td>
+<td>chemical</td>
+</tr>
+<tr>
+<td>FU</td>
+<td>FU.SHF</td>
+<td>FU_S.SHF</td>
+<td>10</td>
+<td>chemical</td>
+</tr>
+<tr>
+<td>RU</td>
+<td>RU.SHF</td>
+<td>RU_S.SHF</td>
+<td>10</td>
+<td>chemical</td>
+</tr>
+<tr>
+<td>SP</td>
+<td>SP.SHF</td>
+<td>SP_S.SHF</td>
+<td>10</td>
+<td>chemical</td>
+</tr>
+<tr>
+<td>L</td>
+<td>L.DCE</td>
+<td>L_S.DCE</td>
+<td>5</td>
+<td>chemical</td>
+</tr>
+<tr>
+<td>PP</td>
+<td>PP.DCE</td>
+<td>PP_S.DCE</td>
+<td>5</td>
+<td>chemical</td>
+</tr>
+<tr>
+<td>V</td>
+<td>V.DCE</td>
+<td>V_S.DCE</td>
+<td>5</td>
+<td>chemical</td>
+</tr>
+<tr>
+<td>TA</td>
+<td>TA.CZC</td>
+<td>TA_S.CZC</td>
+<td>5</td>
+<td>chemical</td>
+</tr>
+<tr>
+<td>MA</td>
+<td>MA.CZC</td>
+<td>MA_S.CZC</td>
+<td>10</td>
+<td>chemical</td>
+</tr>
+<tr>
+<td>EG</td>
+<td>EG.DCE</td>
+<td>EG_S.DCE</td>
+<td>10</td>
+<td>chemical</td>
+</tr>
+<tr>
+<td>SA</td>
+<td>SA.CZC</td>
+<td>SA_S.CZC</td>
+<td>20</td>
+<td>chemical</td>
+</tr>
+<tr>
+<td>RB</td>
+<td>RB.SHF</td>
+<td>RB_S.SHF</td>
+<td>10</td>
+<td>black</td>
+</tr>
+<tr>
+<td>HC</td>
+<td>HC.SHF</td>
+<td>HC_S.SHF</td>
+<td>10</td>
+<td>black</td>
+</tr>
+<tr>
+<td>I</td>
+<td>I.DCE</td>
+<td>I_S.DCE</td>
+<td>100</td>
+<td>black</td>
+</tr>
+<tr>
+<td>J</td>
+<td>J.DCE</td>
+<td>J_S.DCE</td>
+<td>100</td>
+<td>black</td>
+</tr>
+<tr>
+<td>JM</td>
+<td>JM.DCE</td>
+<td>JM_S.DCE</td>
+<td>60</td>
+<td>black</td>
+</tr>
+<tr>
+<td>ZC</td>
+<td>ZC.CZC</td>
+<td>ZC_S.CZC</td>
+<td>100</td>
+<td>black</td>
+</tr>
+<tr>
+<td>SM</td>
+<td>SM.CZC</td>
+<td>SM_S.CZC</td>
+<td>5</td>
+<td>black</td>
+</tr>
+<tr>
+<td>SF</td>
+<td>SF.CZC</td>
+<td>SF_S.CZC</td>
+<td>5</td>
+<td>black</td>
+</tr>
+<tr>
+<td>FG</td>
+<td>FG.CZC</td>
+<td>FG_S.CZC</td>
+<td>20</td>
+<td>chemical</td>
+</tr>
+</tbody></table>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2021-06-20</span><i class="fa fa-tag"></i><span class="leancloud_visitors"></span></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://Mjzs12138.github.io/2021/06/20/中国期货市场交易属性综合分析/,明镜止水的Blog,中国期货市场交易属性综合分析,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a class="btn" role="navigation" href="/2021/06/12/%E4%BA%A4%E6%98%93%E6%97%B6%E6%AE%B5%E8%BD%AC%E6%8D%A2%E6%9C%9F%E9%97%B4%E7%9A%84%E2%80%9C%E8%BE%83%E5%A4%A7%E4%B9%96%E7%A6%BB%20-%20%E4%BB%B7%E6%A0%BC%E8%B0%83%E6%95%B4%E2%80%9D%E5%85%B3%E7%B3%BB%E7%A0%94%E7%A9%B6/" title="交易时段转换期间的“较大乖离-价格调整”关系研究">下一篇</a></li></ul></div><script src="/js/visitors.js"></script><a id="comments"></a><div id="vcomments" style="margin:0 30px;"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//cdn.jsdelivr.net/gh/xcss/valine@latest/dist/Valine.min.js"></script><script>var valine = new Valine({
+  el:'#vcomments',
+  notify:false || false, 
+  verify:false|| false, 
+  app_id:'',
+  app_key:'',
+  placeholder:'念念不忘，必有回响...',
+  path: window.location.pathname,
+  serverURLs: '',
+  visitor:true,
+  recordIP:true,
+  avatar:'mp'
+})</script></div></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script src="/js/baidu-tongji.js"></script></body></html>
